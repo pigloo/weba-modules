@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import metaversefile from 'metaversefile';
-const { useApp, useCamera} = metaversefile;
+const {useApp, useCamera, useCleanup} = metaversefile;
 
 const baseUrl = import.meta.url.replace(/(\/)[^\/\\]*$/, '$1');
 
@@ -21,6 +21,10 @@ export default () => {
     sound.setLoop( true );
     sound.setVolume( 0.5 );
     sound.play();
+  });
+
+  useCleanup(() => {
+    sound.stop()
   });
 
   return app;
