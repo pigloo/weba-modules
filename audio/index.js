@@ -19,7 +19,7 @@ export default () => {
   audioLoader.load( baseUrl + '/audio_windy.mp3', function( buffer ) {
     sound.setBuffer( buffer );
     sound.setLoop( true );
-    sound.setVolume( 0.1 );
+    sound.setVolume( 0.25 );
     sound.play();
   });
 
