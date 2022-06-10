@@ -3,7 +3,7 @@ import metaversefile from 'metaversefile';
 
 // for hdr textures use this RGBELoader
 import {RGBELoader} from 'three/examples//jsm/loaders/RGBELoader.js';
-const {useApp, useLoaders, useScene, useRenderer, useFrame} = metaversefile;
+const {useApp, useLoaders, useScene, useRenderer} = metaversefile;
 
 const baseUrl = import.meta.url.replace(/(\/)[^\/\\]*$/, '$1');
 
@@ -54,10 +54,6 @@ export default e => {
 
     app.add(mesh);
   })());
-
-  useFrame(() => {
-    cubeCamera.update(renderer, scene);
-  });
 
   app.updateMatrixWorld();
 
