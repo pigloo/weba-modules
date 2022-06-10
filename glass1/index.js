@@ -1,20 +1,29 @@
 import * as THREE from 'three';
 import metaversefile from 'metaversefile';
-// for hdr textures use this RGBELoader
-import {RGBELoader} from 'three/examples//jsm/loaders/RGBELoader.js';
-const {useApp, useLoaders, useScene, useRenderer} = metaversefile;
+const {useApp, useLoaders} = metaversefile;
 
 const baseUrl = import.meta.url.replace(/(\/)[^\/\\]*$/, '$1');
 
 export default e => {
   const app = useApp();
 
-  // add an environment map for the glass to reflect, there are a few types such as this hdr map
-  // might be better to use a three.js cube camera to take a snapshot of your scene and use that instead
-  const envMap = new RGBELoader()
-    .load(`${baseUrl}adams_place_bridge_1k.hdr`, function(texture) {
-      texture.mapping = THREE.EquirectangularReflectionMapping;
-    });
+  // use a cubemap to have something to reflect
+  const envMap = (() => {
+    const nx = `${baseUrl}cubemap/negx.jpg`;
+    const px = `${baseUrl}cubemap/posx.jpg`;
+    const py = `${baseUrl}cubemap/posy.jpg`;
+    const ny = `${baseUrl}cubemap/negy.jpg`;
+    const pz = `${baseUrl}cubemap/posz.jpg`;
+    const nz = `${baseUrl}cubemap/negz.jpg`;
+
+    const texture = new THREE.CubeTextureLoader().load([px, nx, py, ny, pz, nz]);
+    texture.minFilter = THREE.NearestFilter;
+    texture.magFilter = THREE.NearestFilter;
+    texture.encoding = THREE.sRGBEncoding;
+    texture.needsUpdate = true;
+
+    return texture;
+  })();
 
   e.waitUntil((async () => {
     // load the gltf model
