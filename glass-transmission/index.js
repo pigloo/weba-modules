@@ -12,8 +12,7 @@ export default e => {
   // add an environment map for the glass to reflect, there are a few types such as this hdr map
   // might be better to use a three.js cube camera to take a snapshot of your scene and use that instead
   const envMap = new RGBELoader()
-    //.load(`${baseUrl}adams_place_bridge_1k.hdr`, function(texture) {
-    .load(`https://threejs.org/examples/textures/equirectangular/royal_esplanade_1k.hdr`, function(texture) {
+    .load(`${baseUrl}adams_place_bridge_1k.hdr`, function(texture) {
       texture.mapping = THREE.EquirectangularReflectionMapping;
     });
 
