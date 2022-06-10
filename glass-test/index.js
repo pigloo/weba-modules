@@ -1,6 +1,5 @@
 import * as THREE from 'three';
 import metaversefile from 'metaversefile';
-
 // for hdr textures use this RGBELoader
 import {RGBELoader} from 'three/examples//jsm/loaders/RGBELoader.js';
 const {useApp, useLoaders, useScene, useRenderer} = metaversefile;
@@ -9,8 +8,6 @@ const baseUrl = import.meta.url.replace(/(\/)[^\/\\]*$/, '$1');
 
 export default e => {
   const app = useApp();
-  const scene = useScene();
-  const renderer = useRenderer();
 
   // add an environment map for the glass to reflect, there are a few types such as this hdr map
   // might be better to use a three.js cube camera to take a snapshot of your scene and use that instead
