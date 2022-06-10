@@ -13,7 +13,7 @@ export default e => {
   // might be better to use a three.js cube camera to take a snapshot of your scene and use that instead
   const envMap = new RGBELoader()
     //.load(`${baseUrl}adams_place_bridge_1k.hdr`, function(texture) {
-    .load(`https://pigloo.github.io/weba-modules/glass-transmission/adams_place_bridge_1k.hdr`, function(texture) {
+    .load(`https://threejs.org/examples/textures/equirectangular/royal_esplanade_1k.hdr`, function(texture) {
       texture.mapping = THREE.EquirectangularReflectionMapping;
     });
 
